@@ -17,13 +17,13 @@
 -                                             "powerpcle-unknown-linux-gnu",
 -                                             "powerpcle-linux-musl"};
 +                                             "powerpcle-unknown-linux-gnu"};
- 
+
    static const char *const PPC64LibDirs[] = {"/lib64", "/lib"};
    static const char *const PPC64Triples[] = {
-@@ -2235,6 +2235,87 @@ void Generic_GCC::GCCInstallationDetector::AddDefaultGCCPrefixes(
+@@ -2235,6 +2235,92 @@ void Generic_GCC::GCCInstallationDetector::AddDefaultGCCPrefixes(
      return;
    }
- 
+
 +  if (TargetTriple.isMusl()) {
 +    static const char *const AArch64MuslTriples[] = {"aarch64-linux-musl"};
 +    static const char *const ARMHFMuslTriples[] = {
@@ -40,6 +40,7 @@
 +    static const char *const PPCLEMuslTriples[] = {"powerpcle-linux-musl"};
 +    static const char *const PPC64MuslTriples[] = {"powerpc64-linux-musl"};
 +    static const char *const PPC64LEMuslTriples[] = {"powerpc64le-linux-musl"};
++    static const char *const RISCV64MuslTriples[] = {"riscv64-linux-musl"};
 +
 +    switch (TargetTriple.getArch()) {
 +    case llvm::Triple::aarch64:
@@ -96,6 +97,13 @@
 +      BiarchLibDirs.append(begin(PPCLELibDirs), end(PPCLELibDirs));
 +      BiarchTripleAliases.append(begin(PPCLEMuslTriples), end(PPCLEMuslTriples));
 +      break;
+<<<<<<< HEAD
+=======
++    case llvm::Triple::riscv64:
++      LibDirs.append(begin(RISCV64LibDirs), end(RISCV64LibDirs));
++      TripleAliases.append(begin(RISCV64MuslTriples), end(RISCV64MuslTriples));
++      break;
+>>>>>>> d49a7165718f92aaa90820ac29fc0f79159cb851
 +    default:
 +      break;
 +    }
