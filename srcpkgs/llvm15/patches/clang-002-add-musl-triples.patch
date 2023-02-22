@@ -98,12 +98,18 @@
 +      BiarchTripleAliases.append(begin(PPCLEMuslTriples), end(PPCLEMuslTriples));
 +      break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b85116d3cedeeea96c45aece8707f5cc97d6b613
 +    case llvm::Triple::riscv64:
 +      LibDirs.append(begin(RISCV64LibDirs), end(RISCV64LibDirs));
 +      TripleAliases.append(begin(RISCV64MuslTriples), end(RISCV64MuslTriples));
 +      break;
+<<<<<<< HEAD
 >>>>>>> d49a7165718f92aaa90820ac29fc0f79159cb851
+=======
+>>>>>>> b85116d3cedeeea96c45aece8707f5cc97d6b613
 +    default:
 +      break;
 +    }

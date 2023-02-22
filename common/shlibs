@@ -994,7 +994,9 @@ libLLVM-15.so libllvm15-15.0.7_1
 libomp.so.5 libomp-15.0.7_1
 libomptarget.so.15 libomp-15.0.7_1
 libLLVMSPIRVLib.so.15 SPIRV-LLVM-Translator-15.0.0_1
-libLLVMSPIRVLib.so.12 SPIRV-LLVM-Translator-12.0.0_1
+libLLVMSPIRVLib.so.15 SPIRV-LLVM-Translator-15.0.0_1
+libomp.so.5 libomp-15.0.7_1
+libomptarget.so.15 libomp-15.0.7_1
 libisofs.so.6 libisofs-0.6.24_1
 libmpack.so.0 libmpack-1.0.5_1
 libGeoIP.so.1 libgeoip-1.4.8_1
@@ -2189,10 +2191,10 @@ libFcitx5Config.so.6 libfcitx5-5.0.5_1
 libFcitx5GClient.so.2 fcitx5-gtk-5.0.4_1
 libFcitx5Qt5DBusAddons.so.1 fcitx5-qt5-5.0.3_1
 libFcitx5Qt5WidgetsAddons.so.2 fcitx5-qt5-5.0.3_1
-libdruntime-ldc-debug-shared.so.100 ldc-runtime-1.30.0_1
-libdruntime-ldc-shared.so.100 ldc-runtime-1.30.0_1
-libphobos2-ldc-shared.so.100 ldc-runtime-1.30.0_1
-libphobos2-ldc-debug-shared.so.100 ldc-runtime-1.30.0_1
+libdruntime-ldc-debug-shared.so.101 ldc-runtime-1.31.0_1
+libdruntime-ldc-shared.so.101 ldc-runtime-1.31.0_1
+libphobos2-ldc-shared.so.101 ldc-runtime-1.31.0_1
+libphobos2-ldc-debug-shared.so.101 ldc-runtime-1.31.0_1
 libmarblewidget-qt5.so.28 marble5-17.12.2_1
 libastro.so.2 marble5-17.12.2_1
 libparrot.so.6.9.0 parrot-6.9.0_1
