@@ -99,17 +99,23 @@
 +      break;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> b85116d3cedeeea96c45aece8707f5cc97d6b613
+=======
+>>>>>>> 43ef7c26131902931ec12265f74377b9d21904ae
 +    case llvm::Triple::riscv64:
 +      LibDirs.append(begin(RISCV64LibDirs), end(RISCV64LibDirs));
 +      TripleAliases.append(begin(RISCV64MuslTriples), end(RISCV64MuslTriples));
 +      break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d49a7165718f92aaa90820ac29fc0f79159cb851
 =======
 >>>>>>> b85116d3cedeeea96c45aece8707f5cc97d6b613
+=======
+>>>>>>> 43ef7c26131902931ec12265f74377b9d21904ae
 +    default:
 +      break;
 +    }
