@@ -129,13 +129,6 @@ post_patch() {
 			vsed -i 's,#ssp,,' ${wrksrc}/libcxx/CMakeLists.txt
 			;;
 	esac
-
-	case "$XBPS_TARGET_MACHINE" in
-		arm*-musl|i686-musl) # sanitizer code is broken since it duplicates some libc bits
-			vsed -i 's/set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)/set(COMPILER_RT_HAS_SANITIZER_COMMON FALSE)/' \
-				${wrksrc}/compiler-rt/cmake/config-ix.cmake
-			;;
-	esac
 }
 
 pre_configure() {
@@ -151,6 +144,7 @@ pre_configure() {
 	case "$XBPS_TARGET_MACHINE" in
 		ppc64*) ;;
 		mips*-musl|ppc*) configure_args+=" -DVOID_CXX_OPT_FLAGS=-Os" ;;
+		armv*) configure_args+=" -DVOID_GCC_BUG_109180_WORKAROUND=ON" ;;
 	esac
 
 	if [ "$CROSS_BUILD" ]; then
@@ -173,6 +167,13 @@ pre_configure() {
 		[ "$_lldb_enable" = "yes" ] && configure_args+=" -DLLDB_TABLEGEN=${wrksrc}/llvm/build/HOST/bin/lldb-tblgen"
 		cd ../..
 	fi
+
+	case "$XBPS_TARGET_MACHINE" in
+	arm*-musl|i686-musl)
+		# sanitizer code is broken since it duplicates some libc bits
+		configure_args+=" -DCOMPILER_RT_BUILD_SANITIZERS=OFF"
+		;;
+	esac
 
 	case "$XBPS_TARGET_MACHINE" in
 		i686*) _arch="X86";;
@@ -243,31 +244,37 @@ clang-tools-extra_package() {
 	homepage="https://clang.llvm.org/extra/"
 	pkg_install() {
 		vmove usr/bin/clang-apply-replacements
+		vmove usr/bin/clang-change-namespace
 		vmove usr/bin/clang-doc
 		vmove usr/bin/clang-include-fixer
+		vmove usr/bin/clang-move
+		vmove usr/bin/clang-pseudo
 		vmove usr/bin/clang-query
-		vmove usr/bin/clang-rename
 		vmove usr/bin/clang-reorder-fields
 		vmove usr/bin/clang-tidy
 		vmove usr/bin/clangd
-		vmove usr/bin/diagtool
 		vmove usr/bin/find-all-symbols
 		vmove usr/bin/hmaptool
 		vmove usr/bin/modularize
 		vmove usr/bin/pp-trace
-		vmove usr/bin/sancov
 		vmove usr/include/clang-tidy
 		vmove "usr/lib/libclangApplyReplacements*"
+		vmove "usr/lib/libclangChangeNamespace*"
+		vmove "usr/lib/libclangDaemon*"
 		vmove "usr/lib/libclangDoc*"
+		vmove "usr/lib/libclangIncludeCleaner*"
 		vmove "usr/lib/libclangIncludeFixer*"
+		vmove "usr/lib/libclangMove*"
+		vmove "usr/lib/libclangPseudo*"
 		vmove "usr/lib/libclangReorderFields*"
 		vmove "usr/lib/libclangQuery*"
 		vmove "usr/lib/libclangTidy*"
+		vmove "usr/lib/libclangd*"
+		vmove "usr/lib/libfindAllSymbols*"
+		vmove "usr/share/clang/*find-all-symbols*"
 		vmove "usr/share/clang/*include-fixer*"
-		vmove "usr/share/clang/*rename*"
 		vmove "usr/share/clang/*tidy*"
 		vmove usr/share/doc/LLVM/clang-tools
-		vmove usr/share/man/man1/diagtool.1
 		vmove usr/share/man/man1/extraclangtools.1
 	}
 }
@@ -281,6 +288,7 @@ clang_package() {
 	pkg_install() {
 		vmove "usr/bin/*clang*"
 		vmove usr/bin/c-index-test
+		vmove usr/bin/diagtool
 		vmove usr/include/clang
 		vmove usr/include/clang-c
 		vmove usr/lib/clang
@@ -290,6 +298,7 @@ clang_package() {
 		vmove usr/share/clang
 		vmove usr/share/doc/LLVM/clang
 		vmove usr/share/man/man1/clang.1
+		vmove usr/share/man/man1/diagtool.1
 	}
 }
 

@@ -1,6 +1,6 @@
 # Template file for 'vscode'
 pkgname=vscode
-version=1.76.0
+version=1.77.0
 revision=1
 _electronver=19.0.8
 _npmver=8.6.0
@@ -12,7 +12,7 @@ maintainer="shizonic <realtiaz@gmail.com>, Alex Lohr <alex.lohr@logmein.com>"
 license="MIT"
 homepage="https://code.visualstudio.com/"
 distfiles="https://github.com/microsoft/vscode/archive/refs/tags/${version}.tar.gz"
-checksum=d25de8ef3bcbdf9c5cdc6a1682651cd655c34703bab06d182939d5e0c3e80807
+checksum=4f4dcf46209a96800715ff1178ca66f2dfc2c77018ccb23ebd27bab49d06d234
 nocross=yes # x64 build does not cut it, it contains native code
 
 if [ "$XBPS_TARGET_WORDSIZE" = "32" ]; then
